@@ -1,0 +1,18 @@
+android_app {
+    name: "BlissEthernetManagerApp",
+    resource_dirs: ["res"],
+    platform_apis: true,
+    
+    srcs: [
+        "java/**/*.java",
+    ],
+    system_ext_specific: true,
+    certificate: "platform",
+
+    static_libs: [
+        "androidx.appcompat_appcompat",
+        "androidx.preference_preference",
+        "com.google.android.material_material",
+        "bliss-ethernet-framework",
+    ],
+}

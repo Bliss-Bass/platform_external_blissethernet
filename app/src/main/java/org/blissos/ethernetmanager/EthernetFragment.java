@@ -9,7 +9,8 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-import org.blissos.ethernetservice.IBlissEthernetServiceListener;
+import org.blissos.ethernet.BlissEthernetManager;
+import org.blissos.ethernet.IBlissEthernetServiceListener;
 
 import java.util.Arrays;
 import java.util.List;
