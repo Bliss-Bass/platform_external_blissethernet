@@ -1,0 +1,7 @@
+java_library_static {
+    name: "bliss-ethernet-framework",
+        srcs: [
+        "src/**/*.java",
+        "src/**/*.aidl",
+    ],
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ipAssignmentTypes">
+        <item>Unassigned</item>
+        <item>DHCP</item>
+        <item>Static</item>
+    </string-array>
+
+    <string-array name="ipAssignmentValues">
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="interfaceListBlank">
+
+    </string-array>
+</resources>

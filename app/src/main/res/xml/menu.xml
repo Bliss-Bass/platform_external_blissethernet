@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/ethernet_settings">
+
+        <Preference
+            android:key="refresh"
+            android:title="Refresh" />
+
+        <ListPreference
+            android:key="interfaceList"
+            android:entries="@array/interfaceListBlank"
+            android:entryValues="@array/interfaceListBlank"
+            android:summary="Select an interface"
+            android:title="Interfaces" />
+
+        <Preference
+            android:key="interfaceUp"
+            android:enabled="false"
+            android:title="Interface Up" />
+
+        <Preference
+            android:key="interfaceDown"
+            android:enabled="true"
+            android:title="Interface Down" />
+
+        <ListPreference
+            android:defaultValue="-1"
+            android:entries="@array/ipAssignmentTypes"
+            android:entryValues="@array/ipAssignmentValues"
+            android:key="ipAssignmentList"
+            android:enabled="false"
+            android:summary="Unassigned"
+            android:title="IP Assignment" />
+
+        <EditTextPreference
+            android:defaultValue=""
+            android:dialogTitle="IP Address"
+            android:enabled="false"
+            android:key="ipAddress"
+            android:summary="null"
+            android:title="IP Address" />
+
+        <EditTextPreference
+            android:defaultValue=""
+            android:dialogTitle="Gateway Address"
+            android:enabled="false"
+            android:key="gatewayAddress"
+            android:summary="null"
+            android:title="Gateway Address" />
+
+        <EditTextPreference
+            android:defaultValue=""
+            android:dialogTitle="DNS Addresses"
+            android:enabled="false"
+            android:key="dnsAddresses"
+            android:summary="null"
+            android:title="DNS Addresses" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
