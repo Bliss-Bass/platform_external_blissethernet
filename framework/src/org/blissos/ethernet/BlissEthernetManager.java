@@ -17,7 +17,7 @@ import org.blissos.ethernet.IBlissEthernetServiceListener;
 public class BlissEthernetManager {
     private static final String TAG = "BlissEthernetManager";
 
-    private static final String SERVICE_NAME = "blissethernet";
+    public static final String SERVICE_NAME = "blissethernet";
     public static final int IP_ASSIGNMENT_UNASSIGNED = -1;
     public static final int IP_ASSIGNMENT_DHCP = 0;
     public static final int IP_ASSIGNMENT_STATIC = 1;
