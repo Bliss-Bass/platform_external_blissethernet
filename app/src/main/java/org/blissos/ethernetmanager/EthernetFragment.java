@@ -111,6 +111,9 @@ public class EthernetFragment extends PreferenceFragmentCompat implements Prefer
     }
 
     private void selectInterface(String iface) {
+        if (!mBlissEthernetManager.isAvailable(iface))
+            return;
+
         mSelectedInterface = iface;
 
         mInterfaceUpPreference.setEnabled(true);
@@ -133,8 +136,12 @@ public class EthernetFragment extends PreferenceFragmentCompat implements Prefer
         mIpAddressPreference.setText(mBlissEthernetManager.getIpAddress(mSelectedInterface));
         mGatewayAddressPreference.setSummary(mBlissEthernetManager.getGateway(mSelectedInterface));
         mGatewayAddressPreference.setText(mBlissEthernetManager.getGateway(mSelectedInterface));
-        mDnsAddressesPreference.setSummary(String.join(",", mBlissEthernetManager.getDnses(mSelectedInterface)));
-        mDnsAddressesPreference.setText(String.join(",", mBlissEthernetManager.getDnses(mSelectedInterface)));
+        String[] dnses = mBlissEthernetManager.getDnses(mSelectedInterface);
+        if (dnses == null || dnses.length < 1) {
+            dnses = new String[] {"null"};
+        }
+        mDnsAddressesPreference.setSummary(String.join(",", dnses));
+        mDnsAddressesPreference.setText(String.join(",", dnses));
 
         if (ipAssignment != BlissEthernetManager.IP_ASSIGNMENT_STATIC) {
             mIpAddressPreference.setEnabled(false);
@@ -150,8 +157,7 @@ public class EthernetFragment extends PreferenceFragmentCompat implements Prefer
     @Override
     public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
         if (preference.getKey().equals(KEY_INTERFACE_LIST)) {
-            if (mBlissEthernetManager.isAvailable((String) newValue))
-                selectInterface((String) newValue);
+            selectInterface((String) newValue);
         } else if (preference.getKey().equals(KEY_IP_ASSIGNMENT_LIST)) {
             mBlissEthernetManager.setIpAssignment(mSelectedInterface, Integer.parseInt((String) newValue));
         } else if (preference.getKey().equals(KEY_IP_ADDRESS)) {
