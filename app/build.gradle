@@ -10,8 +10,8 @@ android {
         applicationId "org.blissos.ethernetmanager"
         minSdk 32
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 32
+        versionName "12.1"
     }
 
     buildTypes {
