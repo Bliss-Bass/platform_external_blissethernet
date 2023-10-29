@@ -1,7 +1,9 @@
 package org.blissos.ethernetmanager;
 
+import android.net.LinkAddress;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;
@@ -161,7 +163,12 @@ public class EthernetFragment extends PreferenceFragmentCompat implements Prefer
         } else if (preference.getKey().equals(KEY_IP_ASSIGNMENT_LIST)) {
             mBlissEthernetManager.setIpAssignment(mSelectedInterface, Integer.parseInt((String) newValue));
         } else if (preference.getKey().equals(KEY_IP_ADDRESS)) {
-            mBlissEthernetManager.setIpAddress(mSelectedInterface, (String) newValue);
+            try {
+                new LinkAddress((String) newValue);
+                mBlissEthernetManager.setIpAddress(mSelectedInterface, (String) newValue);
+            } catch (IllegalArgumentException e) {
+                Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+            }
         } else if (preference.getKey().equals(KEY_GATEWAY_ADDRESS)) {
             mBlissEthernetManager.setGateway(mSelectedInterface, (String) newValue);
         } else if (preference.getKey().equals(KEY_DNS_ADDRESSES)) {
