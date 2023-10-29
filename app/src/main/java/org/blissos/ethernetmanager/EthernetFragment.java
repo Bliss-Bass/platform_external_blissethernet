@@ -63,10 +63,6 @@ public class EthernetFragment extends PreferenceFragmentCompat implements Prefer
         mDnsAddressesPreference.setOnPreferenceChangeListener(this);
 
         mBlissEthernetManager = BlissEthernetManager.getInstance(getContext());
-        refresh();
-    }
-
-    private void refresh() {
         mBlissEthernetManager.setListener(new IBlissEthernetServiceListener.Stub() {
             @Override
             public void onAvailabilityChanged(String iface, boolean isAvailable) throws RemoteException {
@@ -88,16 +84,25 @@ public class EthernetFragment extends PreferenceFragmentCompat implements Prefer
                 }
                 mInterfaceListPreference.setEntries(currentEntries.toArray(new CharSequence[0]));
                 mInterfaceListPreference.setEntryValues(currentEntries.toArray(new CharSequence[0]));
+                mInterfaceListPreference.setValueIndex(0);
             }
         });
+        refresh();
+    }
 
+    private void refresh() {
         String[] ifaces = mBlissEthernetManager.getAvailableInterfaces();
-        if (ifaces.length > 0) {
-            mInterfaceListPreference.setEntries(ifaces);
-            mInterfaceListPreference.setEntryValues(ifaces);
-            selectInterface(ifaces[0]);
+        if (mSelectedInterface != null && Arrays.asList(ifaces).contains(mSelectedInterface)) {
+            restartValues();
         } else {
-            disableAll();
+            if (ifaces.length > 0) {
+                mInterfaceListPreference.setEntries(ifaces);
+                mInterfaceListPreference.setEntryValues(ifaces);
+                mInterfaceListPreference.setValueIndex(0);
+                selectInterface(ifaces[0]);
+            } else {
+                disableAll();
+            }
         }
     }
 
