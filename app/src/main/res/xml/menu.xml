@@ -39,6 +39,7 @@
             android:enabled="false"
             android:key="ipAddress"
             android:summary="null"
+            android:singleLine="true"
             android:title="IP Address" />
 
         <EditTextPreference
@@ -47,6 +48,7 @@
             android:enabled="false"
             android:key="gatewayAddress"
             android:summary="null"
+            android:singleLine="true"
             android:title="Gateway Address" />
 
         <EditTextPreference
@@ -55,6 +57,7 @@
             android:enabled="false"
             android:key="dnsAddresses"
             android:summary="null"
+            android:singleLine="true"
             android:title="DNS Addresses" />
     </PreferenceCategory>
 
